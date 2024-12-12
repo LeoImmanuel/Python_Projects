@@ -1,0 +1,22 @@
+import random
+
+def play()->str:
+    # User and Computer choice for the play
+    user_choice = str(input("What your choice? Rock 'r', Paper 'p', Scissors 's' \n"))
+    computer_choice = random.choice(["r","p","s"])
+    # Tie if user and computer choice are same
+    if user_choice == computer_choice:
+        return f"It's a tie \n User choice: {user_choice} \n Oppenent choice: {computer_choice} " 
+    # Function to evalute who wins, pass the user and computer choice
+    if is_win(user_choice,computer_choice):
+        # Returns True if player wins
+        return f"You won! \n User choice: {user_choice} \n Oppenent choice: {computer_choice} "
+    # Returns False if opponent wins
+    return f"You Lost! \n User choice: {user_choice} \n Oppenent choice: {computer_choice} "
+
+def is_win(player: str,opponent: str)->bool:
+    # Condition for the player to win, if player wins it returns True or returns False if opponent wins
+    if ( player == 'r' and opponent == 's') or ( player == 's' and opponent == 'p' ) or ( player == 'p' and opponent == 'r' ):
+        return True
+
+print(play())
