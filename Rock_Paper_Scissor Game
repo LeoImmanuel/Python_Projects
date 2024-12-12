@@ -3,6 +3,11 @@ import random
 def play()->str:
     # User and Computer choice for the play
     user_choice = str(input("What your choice? Rock 'r', Paper 'p', Scissors 's' \n"))
+    
+    # validate user choice 
+    if user_choice not in ["r","p","s"]:
+        return "Invalid choice! Please choose 'r', 'p', or 's'."
+
     computer_choice = random.choice(["r","p","s"])
     # Tie if user and computer choice are same
     if user_choice == computer_choice:
