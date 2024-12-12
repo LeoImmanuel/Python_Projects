@@ -1,27 +1,41 @@
 import random
 
-def play()->str:
-    # User and Computer choice for the play
-    user_choice = str(input("What your choice? Rock 'r', Paper 'p', Scissors 's' \n"))
-    
-    # validate user choice 
-    if user_choice not in ["r","p","s"]:
-        return "Invalid choice! Please choose 'r', 'p', or 's'."
+def play() -> str:
+    while True:
+        # User and Computer choice for the play
+        user_choice = input("What's your choice? Rock 'r', Paper 'p', Scissors 's': ").lower()
 
-    computer_choice = random.choice(["r","p","s"])
-    # Tie if user and computer choice are same
-    if user_choice == computer_choice:
-        return f"It's a tie \n User choice: {user_choice} \n Oppenent choice: {computer_choice} " 
-    # Function to evalute who wins, pass the user and computer choice
-    if is_win(user_choice,computer_choice):
-        # Returns True if player wins
-        return f"You won! \n User choice: {user_choice} \n Oppenent choice: {computer_choice} "
-    # Returns False if opponent wins
-    return f"You Lost! \n User choice: {user_choice} \n Oppenent choice: {computer_choice} "
+        # Validate user choice
+        if user_choice not in ["r", "p", "s"]:
+            print("Invalid choice! Please choose 'r', 'p', or 's'.")
+            continue
 
-def is_win(player: str,opponent: str)->bool:
-    # Condition for the player to win, if player wins it returns True or returns False if opponent wins
-    if ( player == 'r' and opponent == 's') or ( player == 's' and opponent == 'p' ) or ( player == 'p' and opponent == 'r' ):
-        return True
+        computer_choice = random.choice(["r", "p", "s"])
 
-print(play())
+        # Tie condition
+        if user_choice == computer_choice:
+            print(f"It's a tie!\nUser choice: {user_choice}\nOpponent choice: {computer_choice}")
+        # Function to evaluate who wins, pass the user and computer choice
+        elif is_win(user_choice, computer_choice):
+            # Winning condition for the user
+            print(f"You won!\nUser choice: {user_choice}\nOpponent choice: {computer_choice}")
+        else:
+            # Losing condition
+            print(f"You lost!\nUser choice: {user_choice}\nOpponent choice: {computer_choice}")
+
+        # Replay prompt
+        play_again = input("Do you want to play again? (y/n): ").lower()
+        if play_again != 'y':
+            print("Thanks for playing!")
+            break
+
+def is_win(player: str, opponent: str) -> bool:
+    # Winning conditions for the player
+    return (
+        (player == 'r' and opponent == 's') or
+        (player == 's' and opponent == 'p') or
+        (player == 'p' and opponent == 'r')
+    )
+
+# Start the game
+play()
