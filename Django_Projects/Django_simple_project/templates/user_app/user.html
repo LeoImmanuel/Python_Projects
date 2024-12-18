@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User APP</title>
+</head>
+<body>
+    <h1>Users App Page</h1>
+    <div class="content">
+        {% if book_records %}
+        <table>
+            <thead>
+                <th> Book Names </th>
+                <th> Published Date </th>
+            </thead>
+            {% for book_rec in book_records %}
+            <tr>
+                <td> {{ book_rec.book_name }} </td>
+                <td> {{ book_rec.book_date_published }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p> No Records </p>
+        {% endif %}
+    </div>
+    
+</body>
+</html>

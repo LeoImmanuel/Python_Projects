@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <title>First App</title>
+</head>
+<body>
+    <h1>Hello World! Wassup</h1>
+    <div class="content">
+       {% if access_records %} 
+            <table>
+                <thead>
+                    <th> Website Name </th>
+                    <th> Date Accessed </th>
+                </thead>
+                {% for acc_rec in access_records %}
+                <tr>
+                    <td> {{ acc_rec.web_access_record_name }} </td>
+                    <td> {{ acc_rec.access_date }} </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p> No Access Records Found! </p>
+        {% endif %}
+
+    </div>
+    <img src="{% static 'image_files/download.jpeg' %}" alt="image didn't load" >
+</body>
+</html>

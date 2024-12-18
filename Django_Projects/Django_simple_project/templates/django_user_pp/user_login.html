@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends "home_page/home.html" %}
+
+{% block title %}Django Login Page{% endblock %}
+
+{% block body_block %}
+    <div class="jumbotron">
+        <h1 class="display-4">Django Login Page!</h1>
+        <hr class="my-4">
+        <form action="{% url 'django_user_pp:user_login' %}" method="POST">
+            
+            {% csrf_token %}
+            <label for="username">Username: </label>
+            <input type="text" name="username" placeholder="Enter username">
+
+            <label for="password">Password: </label>
+            <input type="password" name="password">
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+{% endblock %}

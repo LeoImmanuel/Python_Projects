@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Home{% endblock %}</title>
+</head>
+<body>
+    <h1>Home Page!</h1>
+    <ul>
+        <li><a href="{% url 'django_user_pp:reg_index' %}">Don't have an account? Sign up here!</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'django_user_pp:user_logout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'django_user_pp:user_login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+
+    <div class="container">
+        {% block body_block %}
+        <!-- Anything outside this block will be inherited! -->
+        {% endblock %}
+    </div>
+</body>
+</html>
